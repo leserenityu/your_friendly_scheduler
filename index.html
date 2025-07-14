@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Friendly Scheduler</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Your Friendly Scheduler</h1>
+            <p>Find classmates who are free when you are</p>
+        </div>
+
+        <!-- Authentication Section -->
+        <div id="auth-section" class="auth-section">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('login')">Login</button>
+                <button class="tab" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+
+            <div id="login-tab" class="tab-content active">
+                <h2>Welcome Back!</h2>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="your.email@utdallas.edu">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Password">
+                </div>
+                <button class="btn" onclick="login()">Login</button>
+            </div>
+
+            <div id="signup-tab" class="tab-content">
+                <h2>Join UTD Hangout Finder</h2>
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">UTD Email</label>
+                    <input type="email" id="signup-email" placeholder="your.email@utdallas.edu">
+                </div>
+                <div class="form-group">
+                    <label for="signup-major">Major</label>
+                    <input type="text" id="signup-major" placeholder="Computer Science">
+                </div>
+                <div class="form-group">
+                    <label for="signup-year">Year</label>
+                    <select id="signup-year">
+                        <option value="">Select Year</option>
+                        <option value="freshman">Freshman</option>
+                        <option value="sophomore">Sophomore</option>
+                        <option value="junior">Junior</option>
+                        <option value="senior">Senior</option>
+                        <option value="graduate">Graduate</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password">
+                </div>
+                <button class="btn" onclick="signup()">Sign Up</button>
+            </div>
+        </div>
+
+        <!-- Main App Content -->
+        <div id="app-content" class="hidden">
+            <div class="main-content">
+                <!-- Schedule Input -->
+                <div class="card">
+                    <h2>📅 Your Class Schedule</h2>
+                    <div id="status-message"></div>
+                    
+                    <div class="form-group">
+                        <label for="course-name">Course Name</label>
+                        <input type="text" id="course-name" placeholder="e.g. MATH 2417 - Calculus I">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course-days">Days</label>
+                        <select id="course-days">
+                            <option value="">Select Days</option>
+                            <option value="MWF">Monday, Wednesday, Friday</option>
+                            <option value="TR">Tuesday, Thursday</option>
+                            <option value="MW">Monday, Wednesday</option>
+                            <option value="WF">Wednesday, Friday</option>
+                            <option value="M">Monday</option>
+                            <option value="T">Tuesday</option>
+                            <option value="W">Wednesday</option>
+                            <option value="R">Thursday</option>
+                            <option value="F">Friday</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Class Time</label>
+                        <div class="time-input">
+                            <input type="time" id="start-time" placeholder="Start Time">
+                            <input type="time" id="end-time" placeholder="End Time">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Location (Optional)</label>
+                        <input type="text" id="location" placeholder="e.g. ECSW 1.315">
+                    </div>
+                    
+                    <button class="btn" onclick="addClass()">Add Class</button>
+                    
+                    <div class="schedule-list" id="schedule-list">
+                        <!-- Schedule items will be added here -->
+                    </div>
+                </div>
+
+                <!-- Available Users -->
+                <div class="card">
+                    <h2>🤝 Who's Free Right Now</h2>
+                    <p style="margin-bottom: 20px; color: #666;">Based on your schedule, here are people available during your free time:</p>
+                    
+                    <div id="available-users">
+                        <!-- Available users will be shown here -->
+                    </div>
+                    
+                    <button class="btn btn-secondary" onclick="findAvailableUsers()">Refresh Available Users</button>
+                </div>
+            </div>
+
+            <!-- User Profile -->
+            <div class="available-users">
+                <h2>👤 Your Profile</h2>
+                <div class="user-card">
+                    <div class="user-info">
+                        <h4 id="user-name">Loading...</h4>
+                        <p id="user-details">Loading...</p>
+                    </div>
+                    <button class="connect-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
